@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.utils.safestring import mark_safe
+from django.contrib.auth.models import User
+from .models import GroupProfile
 from django.contrib.auth.decorators import login_required
 import json
 
@@ -7,15 +9,18 @@ import json
 
 @login_required
 def index(request):
-    return render(request, 'chat/index.html', {})
+    return render(request, 'chat/index.html')
 
 @login_required
-def room(request, room_name):
-    return render(request, 'chat/room.html', {
-        'room_name_json': mark_safe(json.dumps(room_name))
-    })
+def add_group(request):
+    """ add a group """
+    name = request.POST['name']
+    admin_pk = request.POST['admin_pk']
+    admin = get_object_or_404(User, pk=admin_pk)
+    g = GroupProfile(name = name, admin=admin)
+    g.save()
+    g.users.add(admin)
+    g.save()
+    return HttpResponse(g.pk)
 
-@login_required
-def newIndex(request):
-    return render(request, 'chat/afterlogin.html')
-    #return render(request, 'chat/new_index.html')
+
