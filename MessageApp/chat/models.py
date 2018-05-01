@@ -17,7 +17,8 @@ class GroupProfile(models.Model):
     """ Chat groups for users """
 
     name = models.CharField(max_length=100)
-    admin = models.ForeignKey(User, related_name="group_admin", on_delete=models.CASCADE)
+    admin = models.ForeignKey(User, related_name="group_admin", 
+        on_delete=models.CASCADE)
     users = models.ManyToManyField(User)
 
 class Message(models.Model):

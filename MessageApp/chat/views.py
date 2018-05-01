@@ -17,4 +17,5 @@ def room(request, room_name):
 
 @login_required
 def newIndex(request):
-    return render(request, 'chat/new_index.html')
+    return render(request, 'chat/afterlogin.html')
+    #return render(request, 'chat/new_index.html')
