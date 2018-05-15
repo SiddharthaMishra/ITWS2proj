@@ -108,14 +108,18 @@
                                 cl = 'display-right';
                             else
                                 cl = 'display'
-
+                            var head = document.createElement('h4');
+                            head.textContent = data[owner];    
                             var chatBox = $("#message"+ data['group']);   
                             var new_node =  $( '#text' ).val();
                             var div = $('<div></div>');
+                            div.append(head);
                             var textNode = document.createTextNode(message);
                             div.append(textNode);
                             div.attr('class', cl);
                             chatBox.append(div);
+                            chatBox.append(document.createElement('br'));
+
                             $( '#text' ).val("");
                             div.focus()
                         };
@@ -218,14 +222,20 @@
             var chatBox = $("#message"+ {{ group.pk }});   
             {% for message in group.message_set.all %}
                 var div = $('<div></div>');
-                var text = "{{message.text}}";
+                var text = "{{message.sender}}"
+                var text2 ="{{message.text}}";
+                //console.log(text);
+                var head = document.createElement('h4');
                 var textNode = document.createTextNode(text);
-                div.append(textNode);
-                if("{{message.sender}}" == {{ user.pk }})
+                head.textContent = text;
+                console.log(head);
+                div.append(head);
+                div.append(document.createTextNode(text2));
+                if("{{message.sender.pk}}" == {{ user.pk }})
                     cl = 'display-right';
                 else
                     cl = 'display'
-                div.attr('class', 'display-right');
+                div.attr('class', cl);
                 chatBox.append(div);
             {% endfor %}
         {% endfor %}
@@ -249,13 +259,17 @@
                 cl = 'display-right';
             else
                 cl = 'display'
-            var chatBox = $("#message"+ data['group']);   
+            var chatBox = $("#message"+ data['group']);
+            var head = document.createElement('h4');
+            head.textContent = data['owner'];
             var new_node =  $( '#text' ).val();
             var div = $('<div></div>');
             var textNode = document.createTextNode(message);
+            div.append(head);
             div.append(textNode);
             div.attr('class', cl);
             chatBox.append(div);
+            chatBox.append(document.createElement('br'));
             $( '#text' ).val("");
             div.focus()
         };

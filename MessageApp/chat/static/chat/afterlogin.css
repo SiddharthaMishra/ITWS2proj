@@ -97,6 +97,7 @@ body{
 	height: 1vh;
 	width: 65%;
     left: 35%;
+    margin-top: 10%;
 }
 
 #searchbar{
@@ -148,7 +149,7 @@ body{
 	border-bottom-right-radius: 20px;
 	margin-bottom: 8%;
     padding: 2%;
-    background-color: blueviolet;
+    background-color: aquamarine;
 	color: rgba(0, 0, 0, 1);
 	font-family: Helvetica;
 	word-wrap: break-word;
@@ -166,12 +167,12 @@ body{
 	border-bottom-right-radius: 20px;
 	margin-bottom: 8%;
     padding: 2%;
-    background-color: aquamarine;
+    background-color: blueviolet;
 	color: rgba(0, 0, 0, 1);
 	font-family: Helvetica;
 	word-wrap: break-word;
-	float:right;
-	clear:right;
+	float:left;
+	clear:left;
 }
 
 

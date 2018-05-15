@@ -9,11 +9,15 @@ import json
 
 @login_required
 def index(request):
+    """ Default Page """
+
     return render(request, 'chat/index.html')
+
 
 @login_required
 def add_group(request):
     """ add a group """
+    
     name = request.POST['name']
     admin_pk = request.POST['admin_pk']
     admin = get_object_or_404(User, pk=admin_pk)
